@@ -95,7 +95,7 @@ const ChatBox = Vue.component('chatbox', {
 	template: `
 		<div class="card shadow">
 			<div class="card-header">
-				<h5>Chats</h5>
+				<h5>Group Chat</h5>
 				<div>{{ username }}</div>
 			</div>
 			<div class="card-body" id="output" style="height: 350px; overflow-y: scroll;">
@@ -199,9 +199,9 @@ const Signup = Vue.component('signup', {
 	data(){
 		return {
 			username: '',
-      	email: '',
-      	phone_number: '',
-      	password: '',
+	      	email: '',
+	      	phone_number: '',
+	      	password: '',
 			feedback: ''
 		}
 	},
@@ -324,8 +324,10 @@ const store = new Vuex.Store({
 			}
 		},
 		signup: async ({commit}, payload) => {
+			console.log(payload)
 			try {
 			  const { data } = await axios.post('/user/signup', payload);
+			  console.log(data)
 			  commit('SIGNUP', data);
 			} catch(err) {
 			  console.log(err);
@@ -333,8 +335,8 @@ const store = new Vuex.Store({
 		},
 		fetchChats : async ({commit}) => {
 			let { data } = await axios.get('http://localhost:9000/chat');
-				commit("FETCH_CHATS", data);
-			},
+			commit("FETCH_CHATS", data);
+		},
 		addChat : ({commit}, payload) => {
 			commit("ADD_CHAT", payload);
 		},
