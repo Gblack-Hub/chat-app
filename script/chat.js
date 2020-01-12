@@ -251,11 +251,12 @@ const Signup = Vue.component('signup', {
 									<small>
 										Successfull! click <router-link to="/">here</router-link> to proceed to login
 									</small>
-									<div class="small text-danger text-center">{{ feedback }}</div>
 								</div>
+								<div class="small text-danger text-center">{{ feedback }}</div>
 								<div class="text-right">
 									<button @click="handleSubmit" class="btn btn-primary">Submit</button>
 								</div>
+								<div class="small">Already a member? sign in <router-link to="/">here</router-link></div>
 							</form>
 						</div>
 					</div>
@@ -327,7 +328,6 @@ const store = new Vuex.Store({
 			console.log(payload)
 			try {
 			  const { data } = await axios.post('/user/signup', payload);
-			  console.log(data)
 			  commit('SIGNUP', data);
 			} catch(err) {
 			  console.log(err);
